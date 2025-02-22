@@ -4,7 +4,10 @@
   "description": "Trusted Freelancing Website designed using Web3",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx truffle compile",
+    "copy-contracts": "xcopy build\\contracts client\\src\\contracts /E /Y",
+    "postcompile": "npm run copy-contracts"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,8 @@
     "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
     "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "ncp": "^2.0.0"
   }
 }
