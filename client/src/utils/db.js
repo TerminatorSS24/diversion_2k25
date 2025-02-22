@@ -1,6 +1,7 @@
-// client/src/utils/db.js
-import mongoose from "mongoose";
-require("dotenv").config();
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -8,25 +9,33 @@ if (!MONGODB_URI) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env");
 }
 
-// Global is used to prevent multiple instances of mongoose
-let cached = global.mongoose;
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+// Global cache to prevent multiple database connections
+let cachedClient = null;
+let cachedDb = null;
 
 async function connectDB() {
-  if (cached.conn) {
-    return cached.conn;
+  if (cachedClient && cachedDb) {
+    return { client: cachedClient, db: cachedDb };
   }
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => mongoose);
+  try {
+    const client = await MongoClient.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    const dbName = new URL(MONGODB_URI).pathname.substring(1); // Extracts DB name from URI
+    const db = client.db(dbName);
+
+    cachedClient = client;
+    cachedDb = db;
+
+    console.log("✅ Connected to MongoDB via mongosh");
+    return { client, db };
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
+    throw new Error("MongoDB connection failed!");
   }
-  cached.conn = await cached.promise;
-  return cached.conn;
 }
 
 export default connectDB;

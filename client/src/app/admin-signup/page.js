@@ -22,16 +22,16 @@ export default function AdminSignup() {
         setAccount(accounts[0]);
       } catch (error) {
         console.error("Wallet connection failed:", error);
-        setMessage("⚠️ Wallet connection failed.");
+        setMessage("⚠ Wallet connection failed.");
       }
     } else {
-      alert("⚠️ MetaMask is not installed. Please install it to continue.");
+      alert("⚠ MetaMask is not installed. Please install it to continue.");
     }
   };
 
   const handleSignup = async () => {
     if (!account) {
-      setMessage("⚠️ Please connect your wallet first.");
+      setMessage("⚠ Please connect your wallet first.");
       return;
     }
 
@@ -144,6 +144,6 @@ export default function AdminSignup() {
           )}
         </div>
       )}
-    </div>
-  );
+    </div>
+  );
 }
