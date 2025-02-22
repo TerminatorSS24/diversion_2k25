@@ -2006,10 +2006,16 @@
       "links": {},
       "address": "0x201931348E26fAf2A228dD33fbe185906d18CC42",
       "transactionHash": "0xd4b3861f359856fde3e23e28979fdd055f3f2d4c70c1f59ac2f46a5c5c6c8ab1"
+    },
+    "1740247338391": {
+      "events": {},
+      "links": {},
+      "address": "0x93a29578BE3DDD8E0C0DD51fDC97a6475e652403",
+      "transactionHash": "0xc11fa727e2bf194e0b0cd9a433c013dbeda7223ffc99d95cd848cb4a35834266"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-02-22T17:36:05.256Z",
+  "updatedAt": "2025-02-22T18:07:35.296Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
