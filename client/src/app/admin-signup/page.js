@@ -36,8 +36,6 @@ export default function AdminSignup() {
     }
 
     try {
-      // The 'from' must be the owner address. If the owner is the same as 'account', fine.
-      // If your contract is owned by a different address, you'll need that address in MetaMask.
       await addAdmin(account, account, email, password);
       setMessage("✅ Admin registered successfully!");
     } catch (error) {
@@ -46,38 +44,102 @@ export default function AdminSignup() {
     }
   };
 
+  const styles = {
+    container: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100vh",
+      background: "url('/background.jpg') no-repeat center center/cover",
+    },
+    card: {
+      background: "rgba(255, 255, 255, 0.9)",
+      padding: "2rem",
+      borderRadius: "10px",
+      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.4)",
+      textAlign: "center",
+      width: "400px",
+    },
+    heading: {
+      fontSize: "2rem",
+      fontWeight: "bold",
+      color: "#333",
+    },
+    input: {
+      width: "100%",
+      padding: "10px",
+      margin: "10px 0",
+      border: "1px solid #ccc",
+      borderRadius: "5px",
+    },
+    button: {
+      width: "100%",
+      padding: "12px",
+      background: "linear-gradient(135deg, #007bff, #00d4ff)",
+      color: "white",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      transition: "transform 0.2s",
+    },
+    buttonHover: {
+      background: "linear-gradient(135deg, #0056b3, #00aaff)",
+      transform: "scale(1.05)",
+    },
+    message: {
+      marginTop: "10px",
+      color: "red",
+    },
+  };
+
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div style={styles.container}>
       {isClient && (
-        <div className="bg-white p-6 shadow-lg rounded-lg text-center w-96">
-          <h1 className="text-2xl font-bold text-black">Admin Signup</h1>
+        <div style={styles.card}>
+          <h1 style={styles.heading}>Admin Signup</h1>
           {!account ? (
-            <button className="btn-glow mt-4 w-full" onClick={connectWallet}>
+            <button
+              style={styles.button}
+              onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+              onClick={connectWallet}
+            >
               Connect Wallet
             </button>
           ) : (
             <>
-              <p className="text-green-400 mt-2">✅ Connected: {account}</p>
+              <p style={{ color: "green" }}>✅ Connected: {account}</p>
               <input
                 type="email"
                 placeholder="Email"
-                className="input-field mt-2 w-full p-2 border border-gray-300 rounded"
+                style={styles.input}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
-                className="input-field mt-2 w-full p-2 border border-gray-300 rounded"
+                style={styles.input}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button className="btn-glow mt-4 w-full" onClick={handleSignup}>
+              <button
+                style={styles.button}
+                onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+                onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+                onClick={handleSignup}
+              >
                 Sign Up
               </button>
-              <p className="mt-2">Already have an account?</p>
+              <p>Already have an account?</p>
               <a href="/admin-login">
-                <button className="btn-glow w-full">Login</button>
+                <button
+                  style={styles.button}
+                  onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+                >
+                  Login
+                </button>
               </a>
-              {message && <p className="mt-2 text-red-400">{message}</p>}
+              {message && <p style={styles.message}>{message}</p>}
             </>
           )}
         </div>
