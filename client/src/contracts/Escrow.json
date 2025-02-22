@@ -10428,134 +10428,14 @@
       "transactionHash": "0xd48777392077ee744afe223346c0f4f39b3d965e679955bde3b6e8c1fec15460"
     },
     "1740223169939": {
-      "events": {
-        "0xcb4a885563f0e3bea0f4297ec175b7cd2ad3bd37c9ad95bedf7ae0f2637d8c36": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "dealId",
-              "type": "uint256"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "pd",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "freelancer",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "deadline",
-              "type": "uint256"
-            }
-          ],
-          "name": "FundLocked",
-          "type": "event"
-        },
-        "0x13f52f9c21c3fdebc5f8818e11c76da949695a55082ae117f284a9d355856e1f": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "dealId",
-              "type": "uint256"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "pd",
-              "type": "address"
-            }
-          ],
-          "name": "FundRefunded",
-          "type": "event"
-        },
-        "0x81eb32a5950ed9599d3b8ace742c2ad8759a49ede950f1f1279bfe2e60c40cba": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "dealId",
-              "type": "uint256"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "freelancer",
-              "type": "address"
-            }
-          ],
-          "name": "FundReleased",
-          "type": "event"
-        },
-        "0xf440aec6b52895984d061d622e6edeba6210f7c3e059be920663140c084560d7": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "dealId",
-              "type": "uint256"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "freelancer",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
-          ],
-          "name": "FundsWithdrawn",
-          "type": "event"
-        },
-        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "previousOwner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "newOwner",
-              "type": "address"
-            }
-          ],
-          "name": "OwnershipTransferred",
-          "type": "event"
-        }
-      },
+      "events": {},
       "links": {},
-      "address": "0xc821dBA9C017Aa21083Fdf2093479FFAF8EA8e1C",
-      "transactionHash": "0xcc9794b604dfddd0bca7665333d09d5021d07f65513c815ca08b74678a15fd62"
+      "address": "0xdc6A123659CaE0df61927068Db94C760b9a417D1",
+      "transactionHash": "0xc279cfb44de197705a789b695ca2f6dd9afb0d1af743b6169cb58c55d3325b81"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-02-22T11:21:09.305Z",
+  "updatedAt": "2025-02-22T11:20:19.684Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

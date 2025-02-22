@@ -7736,66 +7736,14 @@
       "transactionHash": "0xcee5edf60c2393979d18e10d21c1ee47fc575bdb2dcca9ba43e0d267ce4c3070"
     },
     "1740223169939": {
-      "events": {
-        "0x8231d1dfb3dd93aaa68bc38254b179791fc196a51aa5eb6634a19e91fa579522": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "adminAddress",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "string",
-              "name": "email",
-              "type": "string"
-            }
-          ],
-          "name": "AdminAdded",
-          "type": "event"
-        },
-        "0xa3b62bc36326052d97ea62d63c3d60308ed4c3ea8ac079dd8499f1e9c4f80c0f": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "adminAddress",
-              "type": "address"
-            }
-          ],
-          "name": "AdminRemoved",
-          "type": "event"
-        },
-        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "previousOwner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "newOwner",
-              "type": "address"
-            }
-          ],
-          "name": "OwnershipTransferred",
-          "type": "event"
-        }
-      },
+      "events": {},
       "links": {},
-      "address": "0xfdf85049061e0d914DBc774b890c892206C376E6",
-      "transactionHash": "0xf559aec95b38fcf057167d3c4b2be56908361bae840fbf38124dbc6588253c53"
+      "address": "0x0a23F7F50EdF2655aC506fC8e17357A8a70943F5",
+      "transactionHash": "0x79051534658d6aec1c80dc2f27b4f0b34442acef597347c8a3b5b58982333830"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-02-22T11:21:09.316Z",
+  "updatedAt": "2025-02-22T11:20:19.695Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

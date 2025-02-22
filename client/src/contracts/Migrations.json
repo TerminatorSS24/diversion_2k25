@@ -1986,12 +1986,12 @@
     "1740223169939": {
       "events": {},
       "links": {},
-      "address": "0xD6601497f356e10D86b9B5C74521eCEcdAEaF024",
-      "transactionHash": "0xa82c3284970d1657c42051afc6c0c4c5adcdb1f51020acf1490a484c4a2e1f80"
+      "address": "0xC95B7Cb194CBC209e1B2AFDB91d215cc3FC8c01F",
+      "transactionHash": "0x6e408750a8eafff9cd94c1b27fe828b54d5cb3aa930c69c867b1b59423a56a26"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-02-22T11:21:09.319Z",
+  "updatedAt": "2025-02-22T11:20:19.697Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
