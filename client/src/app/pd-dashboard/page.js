@@ -6,6 +6,7 @@ import PostProject from "./postproject";
 import FreelancerSelection from "./freelancerSection";
 import Chat from "./chat";
 import EscrowActions from "./escrowActions";
+import './pd.css';
 
 export default function PDDashboard() {
   const [account, setAccount] = useState(null);
