@@ -23,7 +23,7 @@ export default function PDLogin() {
 
   return (
     <div className="login-container">
-      <h1 className="text-2xl font-bold text-white">Project Distributor Login</h1>
+      <h1 className="text-2xl font-bold text-black">Project Distributor Login</h1>
       <button className="btn-glow mt-4" onClick={connectWallet}>
         Connect Wallet
       </button>

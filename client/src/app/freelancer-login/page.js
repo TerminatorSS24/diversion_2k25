@@ -23,7 +23,7 @@ export default function FreelancerLogin() {
 
   return (
     <div className="login-container">
-      <h1 className="text-2xl font-bold text-white">Freelancer Login</h1>
+      <h1 className="text-2xl font-bold text-black">Freelancer Login</h1>
       <button className="btn-glow mt-4" onClick={connectWallet}>
         Connect Wallet
       </button>

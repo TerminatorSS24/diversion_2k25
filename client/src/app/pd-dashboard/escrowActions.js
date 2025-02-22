@@ -20,24 +20,13 @@ export default function EscrowActions({ account }) {
     console.log("Extending deadline or refunding...");
   };
 
-  if (!isClient) {
-    return <p>Loading...</p>; // Prevents hydration issues
-  } // Prevents mismatched SSR/CSR issues
+  if (!isClient) return null; // Prevents mismatched SSR/CSR issues
 
   return (
     <div className="card">
       <h2 className="text-xl font-bold">Escrow Actions</h2>
-      <p>
-        Status:
-        <span
-          className={
-            status === "Approved"
-              ? "text-green-500"
-              : status === "Rejected"
-              ? "text-red-500"
-              : "text-yellow-500"
-          }
-        >
+      <p>Status: 
+        <span className={status === "Approved" ? "text-green-500" : status === "Rejected" ? "text-red-500" : "text-yellow-500"}>
           {status}
         </span>
       </p>
