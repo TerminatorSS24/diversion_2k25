@@ -36,12 +36,9 @@ export default function AdminLogin() {
     }
 
     try {
-      // We call verifyAdmin with the currently connected address and the hashed password
       const isValid = await verifyAdmin(account, password);
-
       if (isValid) {
         setMessage("✅ Login successful!");
-        // redirect or do something else
       } else {
         setMessage("❌ Invalid credentials or not an admin.");
       }
@@ -52,9 +49,12 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div
+      className="flex items-center justify-center h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/background.jpg')" }}
+    >
       {isClient && (
-        <div className="bg-white p-6 shadow-lg rounded-lg text-center w-96">
+        <div className="bg-white p-6 shadow-lg rounded-lg text-center w-96 backdrop-blur-sm bg-opacity-80">
           <h1 className="text-2xl font-bold text-black">Admin Login</h1>
           {!account ? (
             <button className="btn-glow mt-4 w-full" onClick={connectWallet}>
