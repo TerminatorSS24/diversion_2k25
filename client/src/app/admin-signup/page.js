@@ -1,172 +1,6 @@
-// "use client";
-// import { useState, useEffect } from "react";
-// import { addAdmin } from "../../utils/admin";
-// import { storeAdminCredentials } from "../../utils/db";
-
-// export default function AdminSignup() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [message, setMessage] = useState("");
-//   const [account, setAccount] = useState(null);
-//   const [isClient, setIsClient] = useState(false);
-
-//   useEffect(() => {
-//     setIsClient(true);
-//   }, []);
-
-//   const connectWallet = async () => {
-//     if (typeof window !== "undefined" && window.ethereum) {
-//       try {
-//         const accounts = await window.ethereum.request({
-//           method: "eth_requestAccounts",
-//         });
-//         setAccount(accounts[0]);
-//       } catch (error) {
-//         console.error("Wallet connection failed:", error);
-//         setMessage("⚠ Wallet connection failed.");
-//       }
-//     } else {
-//       alert("⚠ MetaMask is not installed. Please install it to continue.");
-//     }
-//   };
-
-//   const handleSignup = async () => {
-//     if (!account) {
-//       setMessage("⚠️ Please connect your wallet first.");
-//       return;
-//     }
-  
-//     try {
-//       const response = await fetch("/api/storeAdmin", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//           email,
-//           password,
-//           walletAddress: account,
-//         }),
-//       });
-  
-//       const data = await response.json();
-  
-//       if (response.ok) {
-//         setMessage("✅ Admin registered successfully!");
-//       } else {
-//         setMessage(`❌ ${data.error}`);
-//       }
-//     } catch (error) {
-//       console.error("Signup failed:", error);
-//       setMessage("❌ Signup failed.");
-//     }
-//   };
-  
-
-//   const styles = {
-//     container: {
-//       display: "flex",
-//       alignItems: "center",
-//       justifyContent: "center",
-//       height: "100vh",
-//       background: "url('/background.jpg') no-repeat center center/cover",
-//     },
-//     card: {
-//       background: "rgba(255, 255, 255, 0.9)",
-//       padding: "2rem",
-//       borderRadius: "10px",
-//       boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.4)",
-//       textAlign: "center",
-//       width: "400px",
-//     },
-//     heading: {
-//       fontSize: "2rem",
-//       fontWeight: "bold",
-//       color: "#333",
-//     },
-//     input: {
-//       width: "100%",
-//       padding: "10px",
-//       margin: "10px 0",
-//       border: "1px solid #ccc",
-//       borderRadius: "5px",
-//     },
-//     button: {
-//       width: "100%",
-//       padding: "12px",
-//       background: "linear-gradient(135deg, #007bff, #00d4ff)",
-//       color: "white",
-//       border: "none",
-//       borderRadius: "5px",
-//       cursor: "pointer",
-//       transition: "transform 0.2s",
-//     },
-//     buttonHover: {
-//       background: "linear-gradient(135deg, #0056b3, #00aaff)",
-//       transform: "scale(1.05)",
-//     },
-//     message: {
-//       marginTop: "10px",
-//       color: "red",
-//     },
-//   };
-
-//   return (
-//     <div style={styles.container}>
-//       {isClient && (
-//         <div style={styles.card}>
-//           <h1 style={styles.heading}>Admin Signup</h1>
-//           {!account ? (
-//             <button
-//               style={styles.button}
-//               onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-//               onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-//               onClick={connectWallet}
-//             >
-//               Connect Wallet
-//             </button>
-//           ) : (
-//             <>
-//               <p style={{ color: "green" }}>✅ Connected: {account}</p>
-//               <input
-//                 type="email"
-//                 placeholder="Email"
-//                 style={styles.input}
-//                 onChange={(e) => setEmail(e.target.value)}
-//               />
-//               <input
-//                 type="password"
-//                 placeholder="Password"
-//                 style={styles.input}
-//                 onChange={(e) => setPassword(e.target.value)}
-//               />
-//               <button
-//                 style={styles.button}
-//                 onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-//                 onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-//                 onClick={handleSignup}
-//               >
-//                 Sign Up
-//               </button>
-//               <p>Already have an account?</p>
-//               <a href="/admin-login">
-//                 <button
-//                   style={styles.button}
-//                   onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-//                   onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
-//                 >
-//                   Login
-//                 </button>
-//               </a>
-//               {message && <p style={styles.message}>{message}</p>}
-//             </>
-//           )}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
 "use client";
 import { useState, useEffect } from "react";
+import { addAdmin } from "../../utils/admin";
 
 export default function AdminSignup() {
   const [email, setEmail] = useState("");
@@ -174,6 +8,7 @@ export default function AdminSignup() {
   const [message, setMessage] = useState("");
   const [account, setAccount] = useState(null);
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -247,102 +82,79 @@ export default function AdminSignup() {
     }
   };
 
-  const styles = {
-    container: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
-      background: "url('/background.jpg') no-repeat center center/cover",
-    },
-    card: {
-      background: "rgba(255, 255, 255, 0.9)",
-      padding: "2rem",
-      borderRadius: "10px",
-      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.4)",
-      textAlign: "center",
-      width: "400px",
-    },
-    heading: {
-      fontSize: "2rem",
-      fontWeight: "bold",
-      color: "#333",
-    },
-    input: {
-      width: "100%",
-      padding: "10px",
-      margin: "10px 0",
-      border: "1px solid #ccc",
-      borderRadius: "5px",
-    },
-    button: {
-      width: "100%",
-      padding: "12px",
-      background: "linear-gradient(135deg, #007bff, #00d4ff)",
-      color: "white",
-      border: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      transition: "transform 0.2s",
-    },
-    buttonHover: {
-      background: "linear-gradient(135deg, #0056b3, #00aaff)",
-      transform: "scale(1.05)",
-    },
-    message: {
-      marginTop: "10px",
-      color: "red",
-    },
-  };
-
   return (
-    <div style={styles.container}>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#004c5a] via-[#004c5a] via-35% to-[#ffffff] text-white">
+      {/* Navbar */}
+      <nav className="absolute top-0 w-full flex justify-between items-center bg-teal-800 text-white p-4 shadow-md">
+        <div
+          className="text-lg font-bold ml-4 cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          Gig-Escrow
+        </div>
+        <ul className="flex space-x-6 mr-4">
+          <li
+            className="hover:underline cursor-pointer"
+            onClick={() => router.push("/")}
+          >
+            Home
+          </li>
+          <li
+            className="hover:underline cursor-pointer"
+            onClick={() => router.push("/about")}
+          >
+            About Us
+          </li>
+          <li
+            className="hover:underline cursor-pointer"
+            onClick={() => router.push("/contact")}
+          >
+            Contact Us
+          </li>
+        </ul>
+      </nav>
+
+      {/* Signup Form */}
       {isClient && (
-        <div style={styles.card}>
-          <h1 style={styles.heading}>Admin Signup</h1>
+        <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-96 text-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">Admin Signup</h1>
           {!account ? (
             <button
-              style={styles.button}
-              onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+              className="bg-teal-800 text-white py-2 px-4 rounded-full hover:bg-teal-700 transition"
               onClick={connectWallet}
             >
               Connect Wallet
             </button>
           ) : (
             <>
-              <p style={{ color: "green" }}>✅ Connected: {account}</p>
+              <p className="text-green-500 mt-2 px-0">✅ Connected: {account}</p>
               <input
                 type="email"
                 placeholder="Email"
-                style={styles.input}
+                className="w-full p-2 mt-4 border border-gray-300 rounded"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
-                style={styles.input}
+                className="w-full p-2 mt-4 border border-gray-300 rounded"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
-                style={styles.button}
-                onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-                onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+                className="bg-teal-800 text-white mt-4 py-2 px-4 w-full rounded-full hover:bg-teal-700 transition"
                 onClick={handleSignup}
               >
                 Sign Up
               </button>
-              <p>Already have an account?</p>
+              <p className="mt-2 text-black text-sm ">Already have an account?</p>
               <a href="/admin-login">
                 <button
-                  style={styles.button}
-                  onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+                  className="bg-teal-800 text-white mt-4 py-2 px-4 w-full rounded-full hover:bg-teal-700 transition"
                 >
                   Login
                 </button>
               </a>
-              {message && <p style={styles.message}>{message}</p>}
+              {message && <p className="mt-2 text-red-500">{message}</p>}
             </>
           )}
         </div>

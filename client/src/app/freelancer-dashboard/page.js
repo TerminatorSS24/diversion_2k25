@@ -9,78 +9,61 @@ import { FaFileUpload, FaExclamationTriangle, FaClock } from "react-icons/fa";
 export default function FreelancerDashboard() {
   const [account, setAccount] = useState(null);
   const [projects, setProjects] = useState([]);
-  const [hiredProject, setHiredProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    // Simulate fetching available projects from blockchain
-    setTimeout(() => {
-      setProjects([
-        { id: 1, title: "Website Development", budget: "0.5 ETH" },
-        { id: 2, title: "Smart Contract Audit", budget: "1.2 ETH" },
-      ]);
-      setIsLoading(false);
-    }, 1000);
+    const fetchProjects = async () => {
+      // Simulate fetching job details from blockchain
+      setTimeout(() => {
+        setProjects([
+          {
+            id: 1,
+            title: "Website Development",
+            techStack: "Next.js, Tailwind CSS, Solidity",
+            price: "0.5 ETH",
+            duration: "2 weeks",
+          },
+          {
+            id: 2,
+            title: "Smart Contract Audit",
+            techStack: "Solidity, Hardhat, OpenZeppelin",
+            price: "1.2 ETH",
+            duration: "3 weeks",
+          },
+        ]);
+        setIsLoading(false);
+      }, 1000);
+    };
+    fetchProjects();
   }, []);
 
   const applyForProject = (projectId) => {
     alert(`Applied for project ID: ${projectId}`);
   };
 
-  const submitWork = () => {
-    alert("Work submitted for review!");
-  };
-
-  const requestExtension = () => {
-    alert("Deadline extension requested.");
-  };
-
-  const escalateToAdmin = () => {
-    alert("Admin notified about issue.");
-  };
-
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-6">
-      <h1 className="text-3xl font-bold mb-4">Freelancer Dashboard</h1>
+      <h1 className="text-4xl font-extrabold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Freelancer Dashboard</h1>
       
-      {/* Available Projects */}
       {isLoading ? (
-        <p>Loading projects...</p>
+        <p className="text-xl text-gray-400 animate-pulse">Loading projects...</p>
       ) : (
-        <div className="w-full max-w-3xl bg-gray-800 p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-2">Available Projects</h2>
+        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <div key={project.id} className="flex justify-between items-center bg-gray-700 p-3 mb-2 rounded">
-              <span>{project.title} - <strong>{project.budget}</strong></span>
+            <div key={project.id} className="bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-700 transform hover:scale-105 transition-all duration-300">
+              <h2 className="text-2xl font-semibold text-green-400">{project.title}</h2>
+              <p className="text-gray-300 mt-2">Tech Stack: <span className="text-white">{project.techStack}</span></p>
+              <p className="text-gray-300 mt-1">Price: <span className="text-yellow-400">{project.price}</span></p>
+              <p className="text-gray-300 mt-1">Duration: <span className="text-red-400">{project.duration}</span></p>
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded"
+                className="mt-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 text-white font-semibold px-6 py-2 rounded-lg w-full transition-all shadow-lg hover:shadow-xl"
                 onClick={() => applyForProject(project.id)}
               >
-                Apply
+                Apply Now
               </button>
             </div>
           ))}
-        </div>
-      )}
-
-      {/* Hired Project */}
-      {hiredProject && (
-        <div className="w-full max-w-3xl bg-gray-800 p-4 rounded-lg shadow-md mt-6">
-          <h2 className="text-xl font-semibold mb-2">Ongoing Project</h2>
-          <p className="mb-2">{hiredProject.title} - <strong>{hiredProject.budget}</strong></p>
-          <p className="text-sm text-gray-300">Files are stored on <a href={hiredProject.ipfsLink} className="text-blue-400 underline" target="_blank">IPFS</a></p>
-          <div className="mt-4 flex gap-2">
-            <button className="bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded flex items-center gap-1" onClick={submitWork}>
-              <FaFileUpload /> Submit Work
-            </button>
-            <button className="bg-yellow-500 hover:bg-yellow-700 text-white px-3 py-1 rounded flex items-center gap-1" onClick={requestExtension}>
-              <FaClock /> Request Extension
-            </button>
-            <button className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded flex items-center gap-1" onClick={escalateToAdmin}>
-              <FaExclamationTriangle /> Escalate to Admin
-            </button>
-          </div>
         </div>
       )}
     </div>

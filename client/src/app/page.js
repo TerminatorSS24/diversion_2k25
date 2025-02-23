@@ -1,13 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Home() {
   const [account, setAccount] = useState(null);
+  const [changingText, setChangingText] = useState("Secure Your Gigs");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
 
-  // Connect to MetaMask
+  const textOptions = [
+    "Secure Your Gigs",
+    "Empower Your Work",
+    "Safe, Transparent, Reliable",
+    "Blockchain-Powered Escrow"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setChangingText(prev => {
+        const index = (textOptions.indexOf(prev) + 1) % textOptions.length;
+        return textOptions[index];
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   async function connectWallet() {
     if (window.ethereum) {
       try {
@@ -22,51 +41,60 @@ export default function Home() {
     }
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center text-white p-6">
-      <h1 className="text-4xl font-bold text-blue-500">Welcome to GigEscrow</h1>
-      <p className="text-gray-400 mt-2">Choose your login role</p>
+  function handleDropdownClick() {
+    setIsDropdownOpen(!isDropdownOpen);
+  }
 
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <button className="btn-glow" onClick={() => router.push("/pd-login")}>
-          🚀 Login as Project Distributor
-        </button>
-        <button className="btn-glow" onClick={() => router.push("/freelancer-login")}>
-          🎨 Login as Freelancer
-        </button>
-        <button className="btn-glow" onClick={() => router.push("/admin-login")}>
-          🔐 Login as Admin
-        </button>
+  function handleLoginClick(path) {
+    setIsDropdownOpen(false);
+    router.push(path);
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#004c5a] via-[#004c5a] via-35% to-[#ffffff] text-white">
+      <nav className="flex justify-between items-center p-4 bg-teal-900">
+        <div className="text-2xl font-bold">Gig-Escrow</div>
+        <ul className="flex space-x-6">
+          <li className="cursor-pointer hover:text-blue-400" onClick={() => router.push("/")}>Home</li>
+          <li className="relative">
+            <span className="cursor-pointer hover:text-blue-400" onClick={handleDropdownClick}>Login</span>
+            {isDropdownOpen && (
+              <ul className="absolute bg-gray-800 shadow-lg mt-2 rounded-lg w-48">
+                <li className="block px-2 py-2 hover:bg-gray-700 text-left cursor-pointer transition" onClick={() => handleLoginClick("/pd-login")}>
+                Project Distributor Login
+                </li>
+                <li className="block px-2 py-2 hover:bg-gray-700 text-left cursor-pointer transition" onClick={() => handleLoginClick("/freelancer-login")}>
+                  Freelancer Login
+                </li>
+                <li className="block px-2 py-2 hover:bg-gray-700 text-left cursor-pointer transition" onClick={() => handleLoginClick("/admin-login")}>
+                  Admin Login
+                </li>
+              </ul>
+            )}
+          </li>
+          <li className="cursor-pointer hover:text-blue-400" onClick={() => router.push("/about-us")}>About Us</li>
+          <li className="cursor-pointer hover:text-blue-400" onClick={() => router.push("/contact-us")}>Contact Us</li>
+        </ul>
+      </nav>
+
+      <div className="flex flex-col lg:flex-row items-center justify-between px-10 py-20">
+        <div className="text-left space-y-4 mt-[10rem]">
+          <h1 className="text-5xl font-bold text-blue-400 transition-all duration-1000">{changingText}</h1>
+          <p className="text-gray-400 max-w-md">
+            Seamless escrow solutions for freelancers and clients—safe, transparent, and blockchain-powered.
+          </p>
+          {account && (
+            <p className="mt-2 text-green-400">
+              ✅ Connected: {account.substring(0, 6)}...{account.slice(-4)}
+            </p>
+          )}
+        </div>
+
+        <div className="relative bg-gradient-to-br from-[#004c5a] via-[#ffffff] via-55%">
+       
+
+        </div>
       </div>
     </div>
-    // <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center text-white p-6">
-      
-    //   <h1 className="text-4xl font-bold text-blue-500">Welcome to GigEscrow</h1>
-    //   <p className="text-gray-400 mt-2">Choose your login role</p>
-
-    //   {/* Login Buttons */}
-    //   <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-    //     <button className="btn-glow" onClick={connectWallet}>
-    //       🚀 Login as Project Distributor
-    //     </button>
-    //     <button className="btn-glow" onClick={connectWallet}>
-    //       🎨 Login as Freelancer
-    //     </button>
-    //     <button className="btn-glow" onClick={connectWallet}>
-    //       🔐 Login as Admin
-    //     </button>
-    //   </div>
-
-    //   {/* Show connected wallet */}
-    //   {account && (
-    //     <p className="mt-4 text-green-400">
-    //       ✅ Connected: {account.substring(0, 6)}...{account.slice(-4)}
-    //     </p>
-    //   )}
-
-    //   {/* Background Effects */}
-    //   <div className="absolute w-72 h-72 bg-blue-500 opacity-10 rounded-full blur-3xl top-10 left-20"></div>
-    //   <div className="absolute w-96 h-96 bg-purple-500 opacity-20 rounded-full blur-3xl bottom-10 right-20"></div>
-    // </div>
   );
 }
