@@ -1,4 +1,4 @@
-# 🚀 Ethereum-Based Freelance Escrow System (SepoliaETH)
+# 🚀 Ethereum-Based Freelance Escrow System (Tesn=tnetETH)
 
 ## 📌 Overview
 A decentralized identity and escrow system for freelancers and employers to ensure secure payments and verified work history using blockchain and smart contracts.
