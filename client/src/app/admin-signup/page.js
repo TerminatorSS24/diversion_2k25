@@ -40,6 +40,8 @@ export default function AdminSignup() {
     try {
       await addAdmin(account, account, email, password);
       setMessage("✅ Admin registered successfully!");
+      // 🔥 Redirect to admin dashboard
+      router.push("/admin-dashboard");
     } catch (error) {
       console.error("Signup failed:", error);
       setMessage("❌ Signup failed.");
