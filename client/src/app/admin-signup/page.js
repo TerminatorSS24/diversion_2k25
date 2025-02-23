@@ -44,106 +44,83 @@ export default function AdminSignup() {
     }
   };
 
-  const styles = {
-    container: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100vh",
-      background: "url('/background.jpg') no-repeat center center/cover",
-    },
-    card: {
-      background: "rgba(255, 255, 255, 0.9)",
-      padding: "2rem",
-      borderRadius: "10px",
-      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.4)",
-      textAlign: "center",
-      width: "400px",
-    },
-    heading: {
-      fontSize: "2rem",
-      fontWeight: "bold",
-      color: "#333",
-    },
-    input: {
-      width: "100%",
-      padding: "10px",
-      margin: "10px 0",
-      border: "1px solid #ccc",
-      borderRadius: "5px",
-    },
-    button: {
-      width: "100%",
-      padding: "12px",
-      background: "linear-gradient(135deg, #007bff, #00d4ff)",
-      color: "white",
-      border: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      transition: "transform 0.2s",
-    },
-    buttonHover: {
-      background: "linear-gradient(135deg, #0056b3, #00aaff)",
-      transform: "scale(1.05)",
-    },
-    message: {
-      marginTop: "10px",
-      color: "red",
-    },
-  };
-
   return (
-    <div style={styles.container}>
+    <div className="min-h-screen bg-gradient-to-br from-[#004c5a] via-[#004c5a] via-35% to-[#ffffff] text-white">
+     
+    {/* Navbar */}
+    <nav className="flex justify-between items-center bg-teal-800 text-white p-4 shadow-md"></nav>
+      <div
+        className="text-lg font-bold ml-4 cursor-pointer"
+        onClick={() => router.push("/")}
+      >
+        Gig-Escrow
+      </div>
+      <ul className="flex space-x-6 mr-4">
+        <li
+          className="hover:underline cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          Home
+        </li>
+        <li
+          className="hover:underline cursor-pointer"
+          onClick={() => router.push("/about")}
+        >
+          About Us
+        </li>
+        <li
+          className="hover:underline cursor-pointer"
+          onClick={() => router.push("/contact")}
+        >
+          Contact-us
+        </li>
+      </ul>
+    
+
       {isClient && (
-        <div style={styles.card}>
-          <h1 style={styles.heading}>Admin Signup</h1>
+        <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-96 text-center">
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">Admin Signup</h1>
           {!account ? (
             <button
-              style={styles.button}
-              onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+              className="w-full py-2 px-4 bg-gradient-to-r from-blue-500 to-cyan-400 text-white rounded-lg hover:scale-105 transition-transform"
               onClick={connectWallet}
             >
               Connect Wallet
             </button>
           ) : (
             <>
-              <p style={{ color: "green" }}>✅ Connected: {account}</p>
+              <p className="text-green-500 mt-2">✅ Connected: {account}</p>
               <input
                 type="email"
                 placeholder="Email"
-                style={styles.input}
+                className="w-full p-2 mt-4 border border-gray-300 rounded"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
-                style={styles.input}
+                className="w-full p-2 mt-4 border border-gray-300 rounded"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
-                style={styles.button}
-                onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-                onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+                className="w-full py-2 px-4 mt-4 bg-gradient-to-r from-blue-500 to-cyan-400 text-white rounded-lg hover:scale-105 transition-transform"
                 onClick={handleSignup}
               >
                 Sign Up
               </button>
-              <p>Already have an account?</p>
+              <p className="mt-2 text-sm">Already have an account?</p>
               <a href="/admin-login">
                 <button
-                  style={styles.button}
-                  onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
-                  onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+                  className="w-full py-2 px-4 mt-2 bg-purple-500 text-white rounded-lg hover:scale-105 transition-transform"
                 >
                   Login
                 </button>
               </a>
-              {message && <p style={styles.message}>{message}</p>}
+              {message && <p className="mt-2 text-red-500">{message}</p>}
             </>
           )}
         </div>
       )}
-    </div>
-  );
+    </div>
+  );
 }
