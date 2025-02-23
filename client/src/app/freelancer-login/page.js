@@ -60,7 +60,7 @@ export default function FreelancerLogin() {
         </button>
         {account && (
           <>
-            <p className="text-green-400 mt-2">Connected: {account}</p>
+            <p className="text-blue-400 mt-2 text-center">Connected: {account}</p>
             <button className="bg-teal-800 text-white py-2 px-4 rounded-full hover:bg-teal-700 mt-2" onClick={() => router.push("/freelancer-dashboard")}>
               Go to Dashboard
             </button>

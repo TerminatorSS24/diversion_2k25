@@ -31,7 +31,7 @@ export default function PDDashboard() {
   }, [router]);
 
   return (
-    <div className="dashboard-container">
+    <div className="">
       <h1 className="text-3xl font-bold text-white">Project Distributor Dashboard</h1>
       <p className="text-green-400">Connected: {account}</p>
 
