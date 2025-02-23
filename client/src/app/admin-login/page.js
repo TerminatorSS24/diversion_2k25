@@ -123,7 +123,7 @@ export default function AdminLogin() {
                 >
                   LOGIN
                 </button>
-                <p className="mt-2 text-sm">Don't have an account?</p>
+                <p className="mt-2  text-black text-sm">Don't have an account?</p>
                 <a href="/admin-signup">
                   <button className="bg-teal-800 text-white mt-4 py-2 px-4 w-full rounded-full hover:bg-teal-700 transition">
                     Sign Up
