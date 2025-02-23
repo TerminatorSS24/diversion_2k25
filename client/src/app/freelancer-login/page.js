@@ -22,20 +22,51 @@ export default function FreelancerLogin() {
   };
 
   return (
-    <div className="login-container">
-      <h1 className="text-2xl font-bold text-black">Freelancer Login</h1>
-      <button className="btn-glow mt-4" onClick={connectWallet}>
-        Connect Wallet
-      </button>
-
-      {account && (
-        <>
-          <p className="text-green-400 mt-2">Connected: {account}</p>
-          <button className="btn-glow mt-4" onClick={() => router.push("/freelancer-dashboard")}>
-            Go to Dashboard
-          </button>
-        </>
-      )}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#004c5a] via-[#004c5a] via-35% to-[#ffffff] text-white">
+      {/* Navbar */}
+      <nav className="absolute top-0 left-0 w-full flex justify-between items-center bg-teal-800 text-white p-4 shadow-md">
+        <div
+          className="text-lg font-bold ml-4 cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          Gig-Escrow
+        </div>
+        <ul className="flex space-x-6 mr-4">
+          <li
+            className="hover:underline cursor-pointer"
+            onClick={() => router.push("/")}
+          >
+            Home
+          </li>
+          <li
+            className="hover:underline cursor-pointer"
+            onClick={() => router.push("/about")}
+          >
+            About Us
+          </li>
+          <li
+            className="hover:underline cursor-pointer"
+            onClick={() => router.push("/contact")}
+          >
+            Contact-us
+          </li>
+        </ul>
+      </nav>
+      {/* Centered Login Box */}
+      <div className="bg-white p-8 shadow-lg rounded-lg w-96 text-center border-t-4 border-purple-500 mt-16">
+        <h1 className="text-2xl font-bold text-black">Freelancer Login</h1>
+        <button className="bg-teal-800 text-white py-2 px-4 rounded-full hover:bg-teal-700 transition" onClick={connectWallet}>
+          Connect Wallet
+        </button>
+        {account && (
+          <>
+            <p className="text-green-400 mt-2">Connected: {account}</p>
+            <button className="bg-teal-800 text-white py-2 px-4 rounded-full hover:bg-teal-700 mt-2" onClick={() => router.push("/freelancer-dashboard")}>
+              Go to Dashboard
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }
