@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { verifyAdmin } from "../../utils/admin";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -36,11 +35,22 @@ export default function AdminLogin() {
     }
 
     try {
-      const isValid = await verifyAdmin(account, password);
-      if (isValid) {
+      // Call the verifyAdmin API route
+      const response = await fetch("/api/verifyAdmin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          walletAddress: account,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
         setMessage("✅ Login successful!");
       } else {
-        setMessage("❌ Invalid credentials or not an admin.");
+        setMessage(`❌ ${data.error}`);
       }
     } catch (error) {
       console.error("Login failed:", error);

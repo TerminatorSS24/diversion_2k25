@@ -237,23 +237,60 @@ const addAdmin = async (from, adminAddress, email, password) => {
 /**
  * @dev Login: we just verify the admin address and password hash
  */
-const verifyAdmin = async (adminAddress, password) => {
-  const adminContract = getAdminContract();
-  if (!adminContract) {
-    throw new Error("Admin contract not initialized. Ensure MetaMask is connected.");
-  }
+// admin.js
+// import mysql from "mysql2/promise";
+// import dbConfig from "../utils/db";
+const dbConfig = {
+  host: "localhost",
+  user: "root", // Default XAMPP MySQL username
+  password: "", // Default XAMPP MySQL password (empty)
+  database: "admin_db", // Replace with your database name
+};
+// const dbConfig = {
+//   host: "localhost",
+//   user: "root", // Default XAMPP MySQL username
+//   password: "", // Default XAMPP MySQL password (empty)
+//   database: "admin_db", // Replace with your database name
+// };
 
-  // Hash the password
-  const passwordHash = web3.utils.soliditySha3(password);
+/**
+ * Verify admin credentials against the MySQL database.
+ * @param {string} walletAddress - The wallet address of the admin.
+ * @param {string} password - The password of the admin.
+ * @returns {Promise<boolean>} - True if the credentials are valid, false otherwise.
+ */
+// utils/admin.js
+import mysql from "mysql2/promise";
 
+
+/**
+ * Verify admin credentials against the MySQL database.
+ * @param {string} walletAddress - The wallet address of the admin.
+ * @param {string} password - The password of the admin.
+ * @returns {Promise<boolean>} - True if the credentials are valid, false otherwise.
+ */
+export const verifyAdmin = async (walletAddress, password) => {
   try {
-    // This calls the "verifyAdmin" function in the contract
-    const isValid = await adminContract.methods
-      .verifyAdmin(adminAddress, passwordHash)
-      .call();
+    // Create a connection to the database
+    const connection = await mysql.createConnection(dbConfig);
 
-    console.log("✅ Admin verified:", isValid);
-    return isValid;
+    // Fetch admin data from the database
+    const [rows] = await connection.execute(
+      `SELECT * FROM admins WHERE walletAddress = ? AND password = ?`,
+      [walletAddress, password]
+    );
+
+    // Close the connection
+    await connection.end();
+
+    // If a matching admin is found, return true
+    if (rows.length > 0) {
+      console.log("✅ Admin verified successfully!");
+      return true;
+    } else {
+      console.error("❌ Invalid credentials or not an admin.");
+      return false;
+    }
   } catch (error) {
     console.error("❌ Error verifying admin:", error);
     throw error;
