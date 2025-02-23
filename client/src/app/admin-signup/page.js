@@ -37,23 +37,8 @@ export default function AdminSignup() {
     }
   
     try {
-      const response = await fetch("/api/storeAdmin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          walletAddress: account,
-        }),
-      });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        setMessage("✅ Admin registered successfully!");
-      } else {
-        setMessage(`❌ ${data.error}`);
-      }
+      await addAdmin(account, account, email, password);
+      setMessage("✅ Admin registered successfully!");
     } catch (error) {
       console.error("Signup failed:", error);
       setMessage("❌ Signup failed. Please check the console for details.");
