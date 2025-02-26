@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { addAdmin } from "../../utils/admin";
+import { useRouter } from "next/navigation";
 
 export default function AdminSignup() {
   const [email, setEmail] = useState("");
